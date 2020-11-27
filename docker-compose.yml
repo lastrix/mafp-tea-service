@@ -1,0 +1,55 @@
+---
+version: '3'
+
+
+services:
+  mafp-postgres:
+    image: library/postgres:12.3-alpine
+    hostname: mafp-postgres
+    container_name: mafp-postgres
+    environment:
+      POSTGRES_DB: test_db
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test2020
+    ports:
+      - 15432:5432
+
+  mafp-app-role-service:
+    image: mafp/app-role-service
+    hostname: mafp-app-role-service
+    container_name: mafp-app-role-service
+    depends_on:
+      - mafp-postgres
+    environment:
+      DB_URL: 'jdbc:postgresql://mafp-postgres:5432/test_db'
+      DB_USERNAME: 'test'
+      DB_PASSWORD: 'test2020'
+      MAFP_DEBUG: 'true'
+      ROLE_SERVICE_CACHE_ENABLE: 'true'
+    ports:
+      - 8080:8080
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+
+  mafp-app-tea-service:
+    image: mafp/app-tea-service
+    hostname: mafp-app-tea-service
+    container_name: mafp-app-tea-service
+    depends_on:
+      - mafp-postgres
+    environment:
+      DB_URL: 'jdbc:postgresql://mafp-postgres:5432/test_db'
+      DB_USERNAME: 'test'
+      DB_PASSWORD: 'test2020'
+      ROLE_SERVICE_ENABLE: 'true'
+      ROLE_SERVICE_URL: 'http://mafp-app-role-service:8080/'
+      ROLE_SERVICE_JWT_USE: 'true'
+      ROLE_SERVICE_CACHE_ENABLE: 'true'
+    ports:
+      - 8081:8080
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'

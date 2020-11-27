@@ -1,0 +1,327 @@
+{
+  "info": {
+    "_postman_id": "f4f75288-359b-4ad4-8790-56b53978ea58",
+    "name": "MafpTeaService",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "/api/v1/tea",
+      "item": [
+        {
+          "name": "type",
+          "item": [
+            {
+              "name": "CREATE tea type",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{MAFP_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"TeaType1\",\n    \"description\": \"TeaType1 description\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{MAFP_TEA_SERVICE}}/api/v1/tea/type",
+                  "host": [
+                    "{{MAFP_TEA_SERVICE}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "tea",
+                    "type"
+                  ]
+                },
+                "description": "Requires TeaTypeManager role to perform"
+              },
+              "response": []
+            },
+            {
+              "name": "UPDATE tea type",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{MAFP_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"TeaType1\",\n    \"description\": \"TeaType1 description (modified)\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{MAFP_TEA_SERVICE}}/api/v1/tea/type",
+                  "host": [
+                    "{{MAFP_TEA_SERVICE}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "tea",
+                    "type"
+                  ]
+                },
+                "description": "Requires TeaTypeManager role to perform"
+              },
+              "response": []
+            },
+            {
+              "name": "GET tea type by name",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{MAFP_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{MAFP_TEA_SERVICE}}/api/v1/tea/type/:teaTypeName",
+                  "host": [
+                    "{{MAFP_TEA_SERVICE}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "tea",
+                    "type",
+                    ":teaTypeName"
+                  ],
+                  "variable": [
+                    {
+                      "key": "teaTypeName",
+                      "value": "TeaType1"
+                    }
+                  ]
+                },
+                "description": "Requires TeaTypeManager role to perform"
+              },
+              "response": []
+            },
+            {
+              "name": "PAGE tea type (GET)",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{MAFP_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{MAFP_TEA_SERVICE}}/api/v1/tea/type/page?page=0&pageSize=20",
+                  "host": [
+                    "{{MAFP_TEA_SERVICE}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "tea",
+                    "type",
+                    "page"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    }
+                  ]
+                },
+                "description": "Requires TeaTypeManager role to perform"
+              },
+              "response": []
+            },
+            {
+              "name": "PAGE tea type (POST)",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{MAFP_TOKEN}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"page\": 0,\n    \"pageSize\": 20\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{MAFP_TEA_SERVICE}}/api/v1/tea/type/page",
+                  "host": [
+                    "{{MAFP_TEA_SERVICE}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "tea",
+                    "type",
+                    "page"
+                  ]
+                },
+                "description": "Requires TeaTypeManager role to perform"
+              },
+              "response": []
+            }
+          ],
+          "protocolProfileBehavior": {},
+          "_postman_isSubFolder": true
+        },
+        {
+          "name": "DRINK tea",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{MAFP_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{MAFP_TEA_SERVICE}}/api/v1/tea?amount=100&teaType=Green",
+              "host": [
+                "{{MAFP_TEA_SERVICE}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "tea"
+              ],
+              "query": [
+                {
+                  "key": "amount",
+                  "value": "100"
+                },
+                {
+                  "key": "teaType",
+                  "value": "Green"
+                }
+              ]
+            },
+            "description": "Must be User to drink tea"
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "/srv/v1/tea",
+      "item": [
+        {
+          "name": "DRINK tea (SRV)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{MAFP_SRV_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{MAFP_TEA_SERVICE}}/srv/v1/tea/:userId?amount=100&teaType=Green",
+              "host": [
+                "{{MAFP_TEA_SERVICE}}"
+              ],
+              "path": [
+                "srv",
+                "v1",
+                "tea",
+                ":userId"
+              ],
+              "query": [
+                {
+                  "key": "amount",
+                  "value": "100"
+                },
+                {
+                  "key": "teaType",
+                  "value": "Green"
+                }
+              ],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": "00000000-0000-0000-0000-000000000001"
+                }
+              ]
+            },
+            "description": "Must be User to drink tea"
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{MAFP_TOKEN}}",
+        "type": "string"
+      }
+    ]
+  },
+  "protocolProfileBehavior": {}
+}

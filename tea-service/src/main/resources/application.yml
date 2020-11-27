@@ -1,0 +1,41 @@
+spring:
+  profiles:
+    active: 'prod'
+  application:
+    name: 'tea-service'
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    initialization-mode: 'always'
+  jpa:
+    properties:
+      hibernate:
+        default_schema: 'tea_service'
+        jdbc:
+          time_zone: 'UTC'
+    hibernate:
+      ddl-auto: 'validate'
+  liquibase:
+    enabled: 'true'
+    change-log: 'classpath:liquibase/changelog/changelog.xml'
+    liquibaseSchema: 'tea_service'
+    defaultSchema: 'tea_service'
+
+##################
+server:
+  port: ${SERVER_PORT:8080}
+
+mafp:
+  srv-id: ${MAFP_SRV_ID:7fffffff-ffff-ffff-0000-000000000002}
+  debug: ${MAFP_DEBUG:false}
+  role:
+    enable: ${ROLE_SERVICE_ENABLE:false}
+    url: ${ROLE_SERVICE_URL:http://localhost:8080}
+    cache:
+      enable: ${ROLE_SERVICE_CACHE_ENABLE:false}
+      lifetime: ${ROLE_SERVICE_LIFETIME:300000}
+      max-size: ${ROLE_SERVICE_MAXSIZE:100000}
+      white-list: ${ROLE_SERVICE_WHITE_LIST:User,TeaTypeManager,TeaDealer}
+    jwt:
+      use: ${ROLE_SERVICE_JWT_USE:true}
