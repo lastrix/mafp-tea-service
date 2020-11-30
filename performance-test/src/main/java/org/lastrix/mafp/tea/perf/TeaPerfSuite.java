@@ -20,7 +20,7 @@ import java.util.UUID;
 
 @Slf4j
 public class TeaPerfSuite implements PerfSuite {
-    private static final int USER_COUNT = 10_000;
+    private static final int USER_COUNT = 100_000;
     private static final Instant EXPIRATION = Instant.now().plus(24, ChronoUnit.HOURS);
     private final JwtSecret secret = new JwtSecret();
     private final OkHttpClient client = new OkHttpClient();
