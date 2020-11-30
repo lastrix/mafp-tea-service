@@ -28,6 +28,7 @@ services:
       ROLE_SERVICE_CACHE_ENABLE: 'true'
     ports:
       - 8080:8080
+      - 9080:9080
     deploy:
       resources:
         limits:
@@ -49,6 +50,7 @@ services:
       ROLE_SERVICE_CACHE_ENABLE: 'true'
     ports:
       - 8081:8080
+      - 9081:9080
     deploy:
       resources:
         limits:
