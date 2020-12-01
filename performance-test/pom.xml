@@ -13,6 +13,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.lastrix.lib</groupId>
             <artifactId>perf-tester</artifactId>
             <version>0.1-SNAPSHOT</version>

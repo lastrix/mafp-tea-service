@@ -3,6 +3,7 @@ package org.lastrix.mafp.tea.perf;
 import com.auth0.jwt.JWT;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.lastrix.jwt.Jwt;
 import org.lastrix.jwt.JwtSecret;
 import org.lastrix.jwt.UserType;
@@ -17,6 +18,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Slf4j
 public class TeaPerfSuite implements PerfSuite {
@@ -30,10 +33,14 @@ public class TeaPerfSuite implements PerfSuite {
     @Override
     public void init() {
         log.info("Initializing...");
-        for (int i = 1; i <= USER_COUNT; i++) {
-            var uid = new UUID(0L, i);
-            userTokens.put(uid, tokenForUser(uid));
-        }
+        var m = IntStream.range(1, USER_COUNT + 1)
+                .parallel()
+                .mapToObj(x -> {
+                    var uid = new UUID(0L, x);
+                    return ImmutablePair.of(uid, tokenForUser(uid));
+                })
+                .collect(Collectors.toMap(ImmutablePair::getLeft, ImmutablePair::getRight));
+        userTokens.putAll(m);
         log.info("Initialization complete!");
     }
 
