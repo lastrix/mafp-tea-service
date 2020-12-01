@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
+import java.util.UUID;
 
 @Slf4j
 @RestController
@@ -34,11 +35,11 @@ public class TeaCupController {
     @RequireRoles("User")
     @PostMapping("/dummy")
     public Rest<TeaCupDto> drinkDummy(@RequestParam Integer amount, @RequestParam String teaType) {
-        return Rest.of(new TeaCupDto(-1L, jwt.getUserId(), amount, new TeaTypeDto(teaType, teaType), Instant.now()));
+        return Rest.of(new TeaCupDto(-1L, new UUID(0L, 0L), amount, new TeaTypeDto(teaType, teaType), Instant.now()));
     }
 
     @PostMapping("/dummy/noauth")
     public Rest<TeaCupDto> drinkDummyNoAuth(@RequestParam Integer amount, @RequestParam String teaType) {
-        return Rest.of(new TeaCupDto(-1L, jwt.getUserId(), amount, new TeaTypeDto(teaType, teaType), Instant.now()));
+        return Rest.of(new TeaCupDto(-1L, new UUID(0L, 0L), amount, new TeaTypeDto(teaType, teaType), Instant.now()));
     }
 }
